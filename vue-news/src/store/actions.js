@@ -1,21 +1,6 @@
-import { fetchAskList, fetchJobsList, fetchNewsList, fetchUserInfo, fetchAskInfo } from '@/api/';
+import { fetchUserInfo, fetchAskInfo, fetchList } from '@/api/';
 
 export default {
-  FETCH_NEWS({ commit }) {
-    fetchNewsList()
-      .then(({ data }) => commit('SET_NEWS', data))
-      .catch((err) => console.log(err));
-  },
-  FETCH_JOBS({ commit }) {
-    fetchJobsList()
-      .then(({ data }) => commit('SET_JOBS', data))
-      .catch((err) => console.log(err));
-  },
-  FETCH_ASK({ commit }) {
-    fetchAskList()
-      .then(({ data }) => commit('SET_ASK', data))
-      .catch((err) => console.log(err));
-  },
   FETCH_USERINFO({ commit }, name) {
     fetchUserInfo(name)
       .then(({ data }) => commit('SET_USER', data))
@@ -25,5 +10,10 @@ export default {
     fetchAskInfo(id)
       .then(({ data }) => commit('SET_ASKINFO', data))
       .catch((err) => console.log(err));
+  },
+  FETCH_LIST({ commit }, pageName) {
+    fetchList(pageName)
+      .then(({ data }) => commit('SET_LIST', data))
+      .catch((error) => console.log(error));
   },
 };

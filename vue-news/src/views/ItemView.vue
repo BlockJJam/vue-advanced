@@ -1,20 +1,15 @@
 <template lang="">
   <div>
     <section>
-      <!-- 질문 상세 정보 -->
-      <div class="user-container">
-        <div>
-          <i class="fa-solid fa-user"></i>
-        </div>
-        <div class="user-description">
-          <router-link :to="`/user/${askInfo.user}`">
-            {{ askInfo.user }}
-          </router-link>
-          <div class="time">
-            {{ askInfo.time_ago }}
-          </div>
-        </div>
-      </div>
+      <!-- 사용자 정보 -->
+      <UserProfile>
+        <router-link slot="username" :to="`/user/${askInfo.user}`">
+          {{ askInfo.user }}
+        </router-link>
+        <template slot="time">{{ 'Posted ' + askInfo.time_ago }}</template>
+      </UserProfile>
+    </section>
+    <section>
       <h2>{{ askInfo.title }}</h2>
     </section>
     <section>
@@ -25,8 +20,12 @@
 </template>
 <script>
 import { mapGetters } from 'vuex';
+import UserProfile from '@/components/UserProfile.vue';
 
 export default {
+  components: {
+    UserProfile,
+  },
   computed: {
     ...mapGetters({
       askInfo: 'fetchedAskInfo',
@@ -34,7 +33,6 @@ export default {
   },
   created() {
     const askInfo = this.$route.params.id;
-    console.log(askInfo);
     this.$store.dispatch('FETCH_ASKINFO', askInfo);
   },
 };
