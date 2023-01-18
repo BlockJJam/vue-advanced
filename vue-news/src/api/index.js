@@ -4,16 +4,31 @@ const config = {
   baseUrl: 'https://api.hnpwa.com/v0',
 };
 
-function fetchUserInfo(userName) {
-  return axios.get(`${config.baseUrl}/user/${userName}.json`);
+async function fetchUserInfo(userName) {
+  try {
+    const response = await axios.get(`${config.baseUrl}/user/${userName}.json`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function fetchAskInfo(id) {
-  return axios.get(`${config.baseUrl}/item/${id}.json`);
+  try {
+    const response = axios.get(`${config.baseUrl}/item/${id}.json`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function fetchList(pageName) {
-  return axios.get(`${config.baseUrl}/${pageName}/1.json`);
+  try {
+    const response = axios.get(`${config.baseUrl}/${pageName}/1.json`);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export { fetchUserInfo, fetchAskInfo, fetchList };

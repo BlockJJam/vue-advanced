@@ -11,7 +11,7 @@
 import UserProfile from '@/components/UserProfile.vue';
 import { mapGetters } from 'vuex';
 
-/**
+/**''
  * UserView -> UserProfile 데이터를 넘기는 방법
  * 1) this.$state.state.xxx > props 활용
  * 2) store의 state를 이용하여, component에서 호출
